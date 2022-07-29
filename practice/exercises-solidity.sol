@@ -13,7 +13,18 @@ pragma solidity >=0.7.0 <0.9.0;
 contract simpleStorage {
     // write all the code inside here - functions and its state
 
-    uint storeData = "28"
-    string names = "Alex"
-    bool switchON = true
+    // Receive information
+    uint storeData;
+
+    // Store information
+    // "public" keyword enables visibility, so that the function can be called outside of the contract itself, while the "private" keyword does the opposite
+    function set(uint x) public {
+        storeData = x;
+    }
+
+    // Retreive the information
+    // "view" is a global modifier that tells the function that it can't modify state
+    function get() public view returns (uint) {
+        return storeData;
+    }
 }
