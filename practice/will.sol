@@ -32,8 +32,16 @@ contract will {
     mapping(address => uint) inheritance;
 
     // set inheritance for each address
-    function setInheritance(address payable wallet, uint amount) public {
+    function setInheritance(address payable wallet, uint amount) public onlyOwner {
         familyWallets.push(wallet);
         inheritance[wallet] = amount;
+    }
+
+    // pay each family member based on their wallet address
+    function payout() private grampsDeceased {
+        for(i = 0; i < familyWallets.length; i++) {
+            // transfer funds from contract address to receiver address
+            familyWallets[i].transfer(inheritance[familyWallets[i]]);
+        }
     }
 }
