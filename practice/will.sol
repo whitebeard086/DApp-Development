@@ -24,4 +24,16 @@ contract will {
         require(deceased == true);
         _;
     }
+
+    // initialize a payable empty array to store the list of wallet addresses of family members
+    address payable[] familyWallets;
+
+    // map through inheritance
+    mapping(address => uint) inheritance;
+
+    // set inheritance for each address
+    function setInheritance(address payable wallet, uint amount) public {
+        familyWallets.push(wallet);
+        inheritance[wallet] = amount;
+    }
 }
