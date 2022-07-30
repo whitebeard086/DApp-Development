@@ -44,4 +44,10 @@ contract will {
             familyWallets[i].transfer(inheritance[familyWallets[i]]);
         }
     }
+
+    // oracle switch simulation to execute the smart contract
+    function isDeceased() public onlyOwner {
+        deceased = true;
+        payout();
+    }
 }
