@@ -39,7 +39,7 @@ contract will {
 
     // pay each family member based on their wallet address
     function payout() private grampsDeceased {
-        for(i = 0; i < familyWallets.length; i++) {
+        for(uint i = 0; i < familyWallets.length; i++) {
             // transfer funds from contract address to receiver address
             familyWallets[i].transfer(inheritance[familyWallets[i]]);
         }
