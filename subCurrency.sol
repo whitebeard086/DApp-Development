@@ -6,4 +6,16 @@ contract Coin {
     // the keyword "public" makes variables declared here accessible from other contracts
     address public minter;
     mapping(address => uint) public balances;
+
+    // constructor functions only run when the contract is deployed
+    constructor() {
+        minter = msg.sender;
+    }
+
+    // make new coins and send them to an address
+    // only the owner should be able to send these coins
+    function mint(address receiver, uint amount) public {
+        require(msg.sender == minter);
+        balances[receiver] += amount;
+    }
 }
