@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+
 pragma solidity ^0.8.0;
 
 import "./RWD.sol";
@@ -9,7 +11,7 @@ contract DecentralBank {
     Tether public tether;
     RWD public rwd;
 
-    constructor(RWD _rwd, Tether _tether) public {
+    constructor(RWD _rwd, Tether _tether) {
         rwd = _rwd;
         tether = _tether;
     }
