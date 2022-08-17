@@ -33,8 +33,8 @@ contract DecentralBank {
         stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
 
         // Check if the sender has staked before
-        if (!hasStaked) {
-            stakers.push[msg.sender];
+        if (!hasStaked[msg.sender]) {
+            stakers.push(msg.sender);
         }
 
         // Update the staked status of the sender
