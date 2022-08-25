@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.5.0;
 
 import "./RWD.sol";
 import "./Tether.sol";
@@ -17,9 +17,10 @@ contract DecentralBank {
     mapping (address => bool) public hasStaked;
     mapping (address => bool) public isStaking;
 
-    constructor(RWD _rwd, Tether _tether) {
+    constructor(RWD _rwd, Tether _tether) public {
         rwd = _rwd;
         tether = _tether;
+        owner = msg.sender;
     }
 
     // Staking function
@@ -40,5 +41,18 @@ contract DecentralBank {
         // Update the staked status of the sender
         isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
+    }
+
+    // Issue reward tokens
+    function issueTokens() public {
+        // Require the owner to be the sender
+        require(msg.sender == owner, "Only the owner can issue tokens");
+        for (uint i = 0; i < stakers.length; i++) {
+            address recipient = stakers[i];
+            uint balance = stakingBalance[recipient] / 9; // Divide by 9 to create percentage incentive for staking
+            if (balance > 0) {
+                rwd.transfer(recipient, balance);
+            }
+        }
     }
 }

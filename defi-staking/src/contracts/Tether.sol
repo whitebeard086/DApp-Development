@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.5.0;
 
 contract Tether {
     string public name = "Mock Tether Token";
@@ -23,7 +23,7 @@ contract Tether {
     mapping (address => uint256) public balanceOf;
     mapping (address => mapping (address => uint256)) public allowance;
 
-    constructor() {
+    constructor() public {
         balanceOf[msg.sender] = totalSupply;
     }
 
